@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinanceFlow - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <div class="bg-blue-600 rounded-lg p-2">
+          <i data-lucide="layout-dashboard" class="w-8 h-8 text-white"></i>
+        </div>
+        <div class="text-left">
+          <h1 class="text-gray-900 text-2xl font-semibold">FinanceFlow</h1>
+          <p class="text-gray-500 text-xs">UMKM Edition</p>
+        </div>
+      </div>
+      <p class="text-gray-500">Masuk ke akun Anda</p>
+    </div>
+
+    <!-- Login Form -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+      <form id="loginForm">
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="email">
+            Email
+          </label>
+          <div class="relative">
+            <i data-lucide="mail" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            <input
+              type="email"
+              id="email"
+              placeholder="nama@email.com"
+              class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-sm"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-medium mb-2" for="password">
+            Password
+          </label>
+          <div class="relative">
+            <i data-lucide="lock" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            <input
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              class="w-full pl-12 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-sm"
+              required
+            />
+            <button type="button" id="togglePassword" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              <i data-lucide="eye" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mb-6">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            <span class="text-gray-600 text-sm">Ingat saya</span>
+          </label>
+          <a href="#" class="text-blue-600 text-sm font-medium hover:underline">Lupa password?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors text-sm"
+        >
+          Masuk
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <p class="text-gray-500 text-sm">
+          Belum punya akun? 
+          <a href="register.html" class="text-blue-600 font-medium hover:underline">Daftar sekarang</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Demo Info -->
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-blue-800 text-sm text-center">
+        <strong>Demo:</strong> Klik tombol Masuk untuk langsung ke Dashboard
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        passwordInput.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    });
+
+    // Handle form submit
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Redirect to dashboard
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

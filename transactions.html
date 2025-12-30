@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinanceFlow - Transaksi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 h-screen flex flex-col fixed">
+      <!-- Logo -->
+      <div class="p-6 border-b border-gray-200">
+        <div class="flex items-center gap-2">
+          <div class="bg-blue-600 rounded-lg p-2">
+            <i data-lucide="layout-dashboard" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-gray-900 text-xl font-semibold">FinanceFlow</h1>
+            <p class="text-gray-500 text-xs">UMKM Edition</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 p-4">
+        <div class="space-y-1">
+          <a href="dashboard.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            Dashboard
+          </a>
+          <a href="transactions.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-600 text-white shadow-sm text-sm font-medium">
+            <i data-lucide="credit-card" class="w-5 h-5"></i>
+            Transaksi
+          </a>
+          <a href="#" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+            WhatsApp
+          </a>
+          <a href="#" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="sheet" class="w-5 h-5"></i>
+            Google Sheets
+          </a>
+          <a href="#" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="file-bar-chart" class="w-5 h-5"></i>
+            Laporan
+          </a>
+          <a href="#" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="settings" class="w-5 h-5"></i>
+            Pengaturan
+          </a>
+        </div>
+      </nav>
+
+      <!-- Bottom Navigation -->
+      <div class="p-4 border-t border-gray-200">
+        <div class="space-y-1">
+          <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+            Notifikasi
+          </button>
+          <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all text-sm font-medium">
+            <i data-lucide="circle-help" class="w-5 h-5"></i>
+            Bantuan
+          </button>
+          <a href="login.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-500 hover:bg-red-50 transition-all text-sm font-medium">
+            <i data-lucide="log-out" class="w-5 h-5"></i>
+            Keluar
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-64">
+      <!-- Header -->
+      <header class="bg-white border-b border-gray-200 px-8 py-4 sticky top-0 z-10">
+        <div class="flex items-center justify-between">
+          <div class="flex-1 max-w-xl">
+            <div class="relative">
+              <i data-lucide="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5"></i>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari transaksi..."
+                class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-sm"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 ml-8">
+            <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-green-500 text-xs font-medium">Synced with WhatsApp</span>
+            </div>
+
+            <button class="relative p-2 hover:bg-gray-50 rounded-lg transition-colors">
+              <i data-lucide="bell" class="text-gray-500 w-5 h-5"></i>
+              <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+
+            <button class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
+              <i data-lucide="settings" class="text-gray-500 w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+              <div class="text-right hidden sm:block">
+                <p class="text-gray-900 text-sm font-medium">Ahmad Rizki</p>
+                <p class="text-gray-500 text-xs">Toko Elektronik</p>
+              </div>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center">
+                <span class="text-white text-sm font-semibold">AR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="p-8">
+        <!-- Page Header -->
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-semibold text-gray-900 mb-2">Transaksi</h1>
+            <p class="text-gray-500 text-sm">Kelola semua transaksi bisnis Anda</p>
+          </div>
+          <button onclick="openModal()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors text-sm">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+            Tambah Transaksi
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+          <div class="flex flex-wrap gap-4">
+            <select id="filterType" class="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="">Semua Tipe</option>
+              <option value="income">Pemasukan</option>
+              <option value="expense">Pengeluaran</option>
+            </select>
+            <select id="filterStatus" class="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="">Semua Status</option>
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+              <option value="failed">Failed</option>
+            </select>
+            <select id="filterCategory" class="px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="">Semua Kategori</option>
+              <option value="Penjualan">Penjualan</option>
+              <option value="Inventory">Inventory</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Operational">Operational</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left px-6 py-4 text-gray-500 text-xs font-medium">DATE</th>
+                  <th class="text-left px-6 py-4 text-gray-500 text-xs font-medium">DESCRIPTION</th>
+                  <th class="text-left px-6 py-4 text-gray-500 text-xs font-medium">CATEGORY</th>
+                  <th class="text-left px-6 py-4 text-gray-500 text-xs font-medium">TYPE</th>
+                  <th class="text-right px-6 py-4 text-gray-500 text-xs font-medium">AMOUNT</th>
+                  <th class="text-center px-6 py-4 text-gray-500 text-xs font-medium">STATUS</th>
+                  <th class="text-center px-6 py-4 text-gray-500 text-xs font-medium">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="transactions-body" class="divide-y divide-gray-200"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Transaction Modal -->
+  <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-semibold text-gray-900">Tambah Transaksi</h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      
+      <form id="transactionForm">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Deskripsi</label>
+            <input type="text" id="txDescription" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Masukkan deskripsi">
+          </div>
+          <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Jumlah (Rp)</label>
+            <input type="number" id="txAmount" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="0">
+          </div>
+          <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Tipe</label>
+            <select id="txType" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="income">Pemasukan</option>
+              <option value="expense">Pengeluaran</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Kategori</label>
+            <select id="txCategory" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="Penjualan">Penjualan</option>
+              <option value="Inventory">Inventory</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Operational">Operational</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="flex gap-3 mt-6">
+          <button type="button" onclick="closeModal()" class="flex-1 px-4 py-3 border border-gray-200 rounded-lg text-gray-700 font-medium text-sm hover:bg-gray-50 transition-colors">
+            Batal
+          </button>
+          <button type="submit" class="flex-1 px-4 py-3 bg-blue-600 rounded-lg text-white font-medium text-sm hover:bg-blue-700 transition-colors">
+            Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script>
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      renderTransactions();
+      
+      // Filter listeners
+      document.getElementById('filterType').addEventListener('change', renderTransactions);
+      document.getElementById('filterStatus').addEventListener('change', renderTransactions);
+      document.getElementById('filterCategory').addEventListener('change', renderTransactions);
+      document.getElementById('searchInput').addEventListener('input', renderTransactions);
+    });
+
+    function renderTransactions() {
+      const tbody = document.getElementById('transactions-body');
+      const filterType = document.getElementById('filterType').value;
+      const filterStatus = document.getElementById('filterStatus').value;
+      const filterCategory = document.getElementById('filterCategory').value;
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      
+      let filtered = transactionsData.filter(tx => {
+        if (filterType && tx.type !== filterType) return false;
+        if (filterStatus && tx.status !== filterStatus) return false;
+        if (filterCategory && tx.category !== filterCategory) return false;
+        if (searchQuery && !tx.description.toLowerCase().includes(searchQuery)) return false;
+        return true;
+      });
+      
+      tbody.innerHTML = '';
+      
+      filtered.forEach(tx => {
+        const typeClass = tx.type === 'income' ? 'bg-green-100 text-green-500' : 'bg-red-100 text-red-500';
+        const amountClass = tx.type === 'income' ? 'text-green-500' : 'text-red-500';
+        const amountPrefix = tx.type === 'income' ? '+' : '-';
+        
+        let statusClass = '';
+        switch(tx.status) {
+          case 'completed': statusClass = 'bg-green-100 text-green-500 border-green-200'; break;
+          case 'pending': statusClass = 'bg-yellow-100 text-yellow-700 border-yellow-200'; break;
+          case 'failed': statusClass = 'bg-red-100 text-red-500 border-red-200'; break;
+        }
+        
+        tbody.innerHTML += `
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 text-gray-500 text-sm">${tx.date}</td>
+            <td class="px-6 py-4 text-gray-900 text-sm font-medium">${tx.description}</td>
+            <td class="px-6 py-4 text-gray-500 text-sm">${tx.category}</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium ${typeClass}">
+                ${tx.type === 'income' ? 'Income' : 'Expense'}
+              </span>
+            </td>
+            <td class="px-6 py-4 text-right text-sm font-semibold ${amountClass}">
+              ${amountPrefix}${formatRupiah(tx.amount)}
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex justify-center">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-md border text-xs font-medium ${statusClass}">
+                  ${tx.status.charAt(0).toUpperCase() + tx.status.slice(1)}
+                </span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex justify-center gap-2">
+                <button class="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-blue-600">
+                  <i data-lucide="edit-2" class="w-4 h-4"></i>
+                </button>
+                <button class="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-red-600">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+      
+      lucide.createIcons();
+    }
+
+    function openModal() {
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modal').classList.remove('flex');
+    }
+
+    document.getElementById('transactionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const newTx = {
+        id: String(transactionsData.length + 1),
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        description: document.getElementById('txDescription').value,
+        category: document.getElementById('txCategory').value,
+        type: document.getElementById('txType').value,
+        amount: parseInt(document.getElementById('txAmount').value),
+        status: 'completed'
+      };
+      
+      transactionsData.unshift(newTx);
+      renderTransactions();
+      closeModal();
+      this.reset();
+    });
+  </script>
+</body>
+</html>
